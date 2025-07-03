@@ -1,191 +1,37 @@
-# ChroniCare - Java Spring Boot OOP Application
+# ChroniCare: Chronic Condition Management System
 
-## 🏥 Overview
+## Project Overview
 
-ChroniCare is a comprehensive chronic condition management system built with **Java Spring Boot** that demonstrates all four fundamental Object-Oriented Programming principles:
+ChroniCare is a comprehensive web application designed to assist individuals in managing their chronic health conditions. It provides features for tracking medications, managing user profiles, and receiving important notifications. The project is built with a focus on demonstrating core Object-Oriented Programming (OOP) principles in a practical, real-world healthcare context.
 
-- 🔒 **Encapsulation**: Private fields with controlled access
-- 🧬 **Inheritance**: HealthRecord and Notification class hierarchies  
-- 🎭 **Polymorphism**: Different notification types with same interface
-- 🎨 **Abstraction**: Service layer hiding complex business logic
+**Developed by:** Ahmed Masoud Baghni
+**NIM:** 20230040030
 
-## 🚀 Quick Start
+**Documentation + Video Link:** https://drive.google.com/drive/folders/1UyiwScUKNQYJ8e8Za476YX9lsPZfqsVD
 
-### Prerequisites
-- Java 17 or higher
-- Maven 3.6 or higher
+## Features
 
-### Run the Application
-```bash
-# Build and run
-mvn spring-boot:run
+### Core Functionality
+*   **User Management:** Create, view, update, and delete user profiles, including personal details, chronic conditions, and emergency contacts.
+*   **Medication Tracking:** Add, manage, and track medications, including dosage, frequency, instructions, and adherence.
+*   **Notification System:** Receive reminders for medications and appointments.
+*   **Dashboard:** An overview of key statistics such as total users, active medications, and adherence rates.
 
-# Access the application
-# Web Interface: http://localhost:8080
-# API Documentation: http://localhost:8080/api
-# H2 Database Console: http://localhost:8080/h2-console
-```
+### Object-Oriented Programming (OOP) Demonstrations
+ChroniCare is meticulously designed to showcase the four pillars of OOP:
 
-## 🏗️ Architecture
+1.  **Encapsulation:**
+    *   **Concept:** Bundling data (attributes) and methods that operate on the data within a single unit (class), and restricting direct access to some of the object's components.
+    *   **Implementation:** Demonstrated in `User` and `Medication` classes where private fields are accessed and modified only through public getter and setter methods. These methods often include validation logic to ensure data integrity (e.g., email format validation, dosage format validation).
 
-### Spring Boot Components
-- **Models**: JPA entities with OOP principles
-- **Controllers**: REST API endpoints
-- **Services**: Business logic abstraction layer
-- **Frontend**: Responsive HTML/CSS/JavaScript interface
+2.  **Inheritance:**
+    *   **Concept:** A mechanism where one class (subclass) acquires the properties and behaviors of another class (superclass), promoting code reusability and establishing a hierarchical relationship.
+    *   **Implementation:** The `HealthRecord` class serves as a base class, defining common attributes for health-related entries. `MedicationRecord` inherits from `HealthRecord`, extending its functionality with specific attributes relevant to medication doses (taken/missed).
 
-### Key Features
-- ✅ Full CRUD operations for users and medications
-- ✅ Real-time medication adherence tracking
-- ✅ Polymorphic notification system
-- ✅ Interactive reports and analytics
-- ✅ Mobile-responsive design
-- ✅ REST API with JSON responses
+3.  **Polymorphism:**
+    *   **Concept:** The ability of different classes to be treated as instances of a common superclass, allowing a single interface to represent different underlying types or behaviors.
+    *   **Implementation:** The `Notification` base class defines a common interface (`send()`, `get_content()`). `MedicationNotification` and `AppointmentNotification` are concrete subclasses that implement these methods differently, providing specific content and behavior for each notification type. The system can then process a list of `Notification` objects uniformly, invoking the correct `send()` method at runtime.
 
-## 📊 OOP Demonstrations
-
-### Encapsulation Example
-```java
-public class User {
-    private String email;  // Private field
-    
-    public void setEmail(String email) {
-        if (email != null && email.contains("@")) {
-            this.email = email.trim();
-        } else {
-            throw new IllegalArgumentException("Invalid email");
-        }
-    }
-}
-```
-
-### Inheritance Example
-```java
-public abstract class HealthRecord {
-    protected Long id;
-    public abstract String getSummary();
-}
-
-public class MedicationRecord extends HealthRecord {
-    @Override
-    public String getSummary() {
-        return "Medication: " + medicationName;
-    }
-}
-```
-
-### Polymorphism Example
-```java
-// Same interface, different implementations
-List<Notification> notifications = Arrays.asList(
-    new MedicationNotification(),
-    new AppointmentNotification()
-);
-
-for (Notification notif : notifications) {
-    notif.send(); // Different behavior for each type
-}
-```
-
-### Abstraction Example
-```java
-@Service
-public class UserService {
-    // Complex logic hidden behind simple interface
-    public double calculateOverallAdherence(User user) {
-        // Complex calculation abstracted away
-        return user.getMedications().stream()
-            .mapToDouble(Medication::getAdherenceRate)
-            .average().orElse(0.0);
-    }
-}
-```
-
-## 🔧 API Endpoints
-
-### Users
-- `GET /api/users` - Get all users
-- `GET /api/users/{id}` - Get user by ID
-- `GET /api/users/{id}/adherence` - Get adherence summary
-
-### Medications  
-- `GET /api/medications/user/{userId}` - Get user medications
-- `POST /api/medications/{id}/take` - Mark medication taken
-- `GET /api/medications/user/{userId}/schedule` - Get schedule
-
-### Notifications
-- `GET /api/notifications/user/{userId}` - Get notifications
-- `POST /api/notifications/{id}/send` - Send notification
-- `POST /api/notifications/user/{userId}/send-due` - Send due notifications
-
-## 📱 Frontend Features
-
-- **Patient Dashboard**: User info, medications, schedule
-- **Medication Tracking**: Real-time adherence monitoring  
-- **Notification Center**: Pending and sent notifications
-- **Reports**: Summary, adherence, medication, and notification reports
-- **Polymorphism Demo**: Interactive OOP concept demonstration
-
-## 🗃️ Sample Data
-
-The application includes sample data for immediate testing:
-
-### Users
-- Sarah Johnson (Diabetes & Hypertension)
-- Michael Chen (Asthma & High Cholesterol)
-- Emily Rodriguez (Rheumatoid Arthritis)
-
-### Medications
-- Metformin, Lisinopril, Aspirin, Albuterol, Atorvastatin
-
-### Notifications
-- Medication reminders, appointment alerts, adherence warnings
-
-## 📚 Documentation
-
-- **Complete Documentation**: `ChroniCare_SpringBoot_Documentation.pdf`
-- **Code Examples**: Detailed OOP implementations with explanations
-- **API Reference**: All endpoints with request/response examples
-- **Architecture Guide**: Spring Boot structure and design patterns
-
-## 🎓 Educational Value
-
-Perfect for learning:
-- Java OOP principles in practice
-- Spring Boot framework fundamentals
-- REST API design and implementation
-- Full-stack web development
-- Healthcare software concepts
-- Enterprise application patterns
-
-## 🔧 Configuration
-
-### Database
-- **Type**: H2 In-Memory Database
-- **Console**: http://localhost:8080/h2-console
-- **JDBC URL**: jdbc:h2:mem:chronicare
-- **Username**: sa (no password)
-
-### Application Properties
-- **Port**: 8080
-- **Profile**: Development
-- **Logging**: DEBUG level for application classes
-- **CORS**: Enabled for all origins
-
-## 🚀 Deployment Ready
-
-The application is ready for deployment to:
-- Heroku
-- Railway
-- Google Cloud Platform
-- AWS Elastic Beanstalk
-- Any Java hosting platform
-
-## 📄 License
-
-Educational project demonstrating Java OOP principles with Spring Boot framework.
-
----
-
-**Built with ❤️ using Java Spring Boot to demonstrate Object-Oriented Programming excellence**
-
+4.  **Abstraction:**
+    *   **Concept:** Hiding complex implementation details and showing only the essential features of an object, focusing on what an object does rather than how it does it.
+    *   **Implementation:** The service layer (`UserService`, `MedicationService`, `NotificationService`) provides abstract interfaces for complex business logic. For example, the frontend interacts with `UserService.calculateAdherence()` without needing to know the intricate details of how adherence is computed, thus abstracting away the complexity of data retrieval and calculations.
