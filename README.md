@@ -9,6 +9,9 @@ ChroniCare is a comprehensive web application designed to assist individuals in 
 
 **Documentation + Video Link:** https://drive.google.com/drive/folders/1UyiwScUKNQYJ8e8Za476YX9lsPZfqsVD
 
+**Deployed Project to manus cloud-space hosting
+service:** https://j6h5i7c1y8g6.manus.space
+
 ## Features
 
 ### Core Functionality
